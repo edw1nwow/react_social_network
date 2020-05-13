@@ -1,0 +1,14 @@
+.content {
+  grid-area: c;
+}
+
+.background img {
+  width: 1200px;
+  height: 200px;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  float: left;
+}

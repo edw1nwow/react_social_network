@@ -1,0 +1,24 @@
+.dialogs {
+  display: grid;
+  grid-template-areas:
+    "u m"
+    "n c";
+  grid-template-columns: 6fr 6fr;
+}
+
+.users {
+  grid-area: u;
+  padding: 10px;
+}
+
+.user {
+  display: block;
+}
+
+.active {
+  color: yellow;
+}
+
+.messages {
+  grid-area: m;
+}

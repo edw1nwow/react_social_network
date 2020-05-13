@@ -1,0 +1,12 @@
+.App {
+  display: grid;
+  grid-template-areas:
+    "h h"
+    "n c";
+  grid-template-rows: 150px 1fr;
+  grid-template-columns: 2fr 10fr;
+}
+
+.App-wrapper {
+  grid-area: c;
+}
