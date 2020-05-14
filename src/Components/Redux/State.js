@@ -29,35 +29,39 @@ let store = {
   _callSubscriber() {
     console.log("was changed");
   },
-  addPost() {
-    let newPost = {
-      id: 6,
-      message: this._state.NewPostText,
-      countLike: 0,
-    };
-    this._state.messageData.push(newPost);
-    this._state.NewPostText = "";
-    this._callSubscriber(this._state);
-  },
-  addMessage(postMessage) {
-    let messageNew = {
-      id: 5,
-      message: this._state.sendMessage,
-    };
-    this._state.letterData.push(messageNew);
-    this._state.sendMessage = "";
-    this._callSubscriber(this.state);
-  },
-  areaPost(postMessage) {
-    this._state.NewPostText = postMessage;
-    this._callSubscriber(this.state);
-  },
+
+  //addMessage(postMessage)
+  //areaPost(postMessage) {},
   areaMessage(postMessage) {
     this._state.sendMessage = postMessage;
     this._callSubscriber(this.state);
   },
   subscriber(observer) {
     this._callSubscriber = observer;
+  },
+  dispatch(active) {
+    debugger;
+    if (active.type === "addPost") {
+      let newPost = {
+        id: 6,
+        message: this._state.NewPostText,
+        countLike: 0,
+      };
+      this._state.messageData.push(newPost);
+      this._state.NewPostText = "";
+      this._callSubscriber(this._state);
+    } else if (active.type === "addMessage") {
+      let messageNew = {
+        id: 5,
+        message: this._state.sendMessage,
+      };
+      this._state.letterData.push(messageNew);
+      this._state.sendMessage = "";
+      this._callSubscriber(this.state);
+    } else if (active.type === "areaPost") {
+      this._state.NewPostText = active.text;
+      this._callSubscriber(this.state);
+    }
   },
 };
 
