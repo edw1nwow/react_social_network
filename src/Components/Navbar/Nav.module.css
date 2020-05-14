@@ -1,13 +1,18 @@
 .nav {
   grid-area: n;
-  background-color: grey;
+  background-color: black;
   padding: 20px;
 }
 .item a {
-  color: red;
+  color: white;
   text-decoration: none;
+  font-family: "Anton";
+  font-size: 26px;
+  margin: 30px;
+  padding: 0 100px;
 }
 
 .item a.active {
-  color: black;
+  color: gold;
+  border: 2px solid gold;
 }
