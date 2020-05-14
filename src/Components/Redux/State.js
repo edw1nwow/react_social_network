@@ -29,13 +29,6 @@ let store = {
   _callSubscriber() {
     console.log("was changed");
   },
-
-  //addMessage(postMessage)
-  //areaPost(postMessage) {},
-  areaMessage(postMessage) {
-    this._state.sendMessage = postMessage;
-    this._callSubscriber(this.state);
-  },
   subscriber(observer) {
     this._callSubscriber = observer;
   },
@@ -53,7 +46,7 @@ let store = {
     } else if (active.type === "addMessage") {
       let messageNew = {
         id: 5,
-        message: this._state.sendMessage,
+        message: active.sendMessage,
       };
       this._state.letterData.push(messageNew);
       this._state.sendMessage = "";
@@ -61,9 +54,23 @@ let store = {
     } else if (active.type === "areaPost") {
       this._state.NewPostText = active.text;
       this._callSubscriber(this.state);
+    } else if (active.type === "areaMessage") {
+      this._state.sendMessage = active.add;
+      this._callSubscriber(this.state);
     }
   },
 };
+
+export const addPostCreator = () => ({ type: "addPost" });
+export const onChangeAreaCreator = (text) => ({ type: "areaPost", text: text });
+export const addMessageCreator = (add) => ({
+  type: "addMessage",
+  sendMessage: add,
+});
+export const areaMessageCreator = (add) => ({
+  type: "areaMessage",
+  sendMessage: add,
+});
 
 window.state = store._state;
 export default store;

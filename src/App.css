@@ -10,3 +10,7 @@
 .App-wrapper {
   grid-area: c;
 }
+
+body {
+  font-family: "Anton", sans-serif;
+}

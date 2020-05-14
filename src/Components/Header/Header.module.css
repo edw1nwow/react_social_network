@@ -1,5 +1,6 @@
 .header {
-  background-color: yellow;
+  background-color: grey;
+  border: 10px solid white;
   grid-area: h;
 }
 

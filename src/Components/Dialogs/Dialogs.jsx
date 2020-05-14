@@ -2,9 +2,9 @@ import React from "react";
 import s from "./Dialogs.module.css";
 import { NavLink } from "react-router-dom";
 import Message from "./message/Message";
+import { areaMessageCreator, addMessageCreator } from "../Redux/State";
 
 const User = (props) => {
-  debugger;
   let path = "/Dialogs/" + props.id;
   return (
     <NavLink to={path} className={`${s.user}`} activeClassName={s.active}>
@@ -21,13 +21,14 @@ const Dialogs = (props) => {
   let sendMessage = React.createRef();
 
   let send = () => {
+    debugger;
     let add = sendMessage.current.value;
-    props.store.addMessage(add);
+    props.store.dispatch(addMessageCreator(add));
   };
 
   let insertMessage = () => {
     let add = sendMessage.current.value;
-    props.store.areaMessage(add);
+    props.store.dispatch(areaMessageCreator(add));
   };
 
   return (

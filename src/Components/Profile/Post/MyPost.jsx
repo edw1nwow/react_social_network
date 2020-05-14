@@ -1,5 +1,6 @@
 import React from "react";
 import Post from "./Post";
+import { addPostCreator, onChangeAreaCreator } from "../../Redux/State";
 
 const MyPost = (props) => {
   let add = React.createRef();
@@ -7,12 +8,12 @@ const MyPost = (props) => {
   debugger;
 
   let addPost = () => {
-    props.store.dispatch({ type: "addPost" });
+    props.store.dispatch(addPostCreator());
   };
 
   let onChangeArea = () => {
     let text = add.current.value;
-    props.store.dispatch({ type: "areaPost", text: text });
+    props.store.dispatch(onChangeAreaCreator(text));
   };
 
   let posts = props.store
