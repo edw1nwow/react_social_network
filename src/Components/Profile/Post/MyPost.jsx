@@ -3,14 +3,16 @@ import Post from "./Post";
 
 const MyPost = (props) => {
   let add = React.createRef();
+
   debugger;
+
   let addPost = () => {
-    props.store.addPost(props.store.getState().NewPostText);
+    props.store.dispatch({ type: "addPost" });
   };
 
   let onChangeArea = () => {
     let text = add.current.value;
-    props.store.areaPost(text);
+    props.store.dispatch({ type: "areaPost", text: text });
   };
 
   let posts = props.store
@@ -19,7 +21,7 @@ const MyPost = (props) => {
       <Post message={p.message} countLike={p.countLike} />
     ));
 
-  console.log(props.store.getState().messageData);
+  console.log();
   return (
     <div className='New-post'>
       <h3>New post</h3>
