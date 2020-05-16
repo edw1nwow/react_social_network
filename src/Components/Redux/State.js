@@ -1,27 +1,33 @@
+import profileReducer from "../Redux/Profile-reducer";
+import dialogReducer from "../Redux/Dialog-reducer";
+
 let store = {
   _state: {
-    NewPostText: "Social network",
-    sendMessage: "newLetter",
-    messageData: [
-      { id: 1, message: "hello, Bro!", countLike: 0 },
-      { id: 2, message: "How are y ?", countLike: 23 },
-      { id: 3, message: "hello, Bro!", countLike: 3 },
-      { id: 4, message: "hello, Bro!", countLike: 43 },
-      { id: 5, message: "hello, Br!", countLike: 42 },
-    ],
-    usersData: [
-      { id: 1, name: "Stas" },
-      { id: 2, name: "Lera" },
-      { id: 3, name: "Mama" },
-      { id: 4, name: "Andrey" },
-    ],
-
-    letterData: [
-      { id: 1, message: "Hy" },
-      { id: 2, message: "How are you?" },
-      { id: 3, message: "Good night" },
-      { id: 4, message: "Good night,sir" },
-    ],
+    profilePage: {
+      messageData: [
+        { id: 1, message: "hello, Bro!", countLike: 0 },
+        { id: 2, message: "How are y ?", countLike: 23 },
+        { id: 3, message: "hello, Bro!", countLike: 3 },
+        { id: 4, message: "hello, Bro!", countLike: 43 },
+        { id: 5, message: "hello, Br!", countLike: 42 },
+      ],
+      NewPostText: "Social network",
+    },
+    dialogPage: {
+      usersData: [
+        { id: 1, name: "Stas" },
+        { id: 2, name: "Lera" },
+        { id: 3, name: "Mama" },
+        { id: 4, name: "Andrey" },
+      ],
+      letterData: [
+        { id: 1, message: "Hy" },
+        { id: 2, message: "How are you?" },
+        { id: 3, message: "Good night" },
+        { id: 4, message: "Good night,sir" },
+      ],
+      sendMessage: "newLetter",
+    },
   },
   getState() {
     return this._state;
@@ -32,45 +38,15 @@ let store = {
   subscriber(observer) {
     this._callSubscriber = observer;
   },
-  dispatch(active) {
-    debugger;
-    if (active.type === "addPost") {
-      let newPost = {
-        id: 6,
-        message: this._state.NewPostText,
-        countLike: 0,
-      };
-      this._state.messageData.push(newPost);
-      this._state.NewPostText = "";
-      this._callSubscriber(this._state);
-    } else if (active.type === "addMessage") {
-      let messageNew = {
-        id: 5,
-        message: active.sendMessage,
-      };
-      this._state.letterData.push(messageNew);
-      this._state.sendMessage = "";
-      this._callSubscriber(this.state);
-    } else if (active.type === "areaPost") {
-      this._state.NewPostText = active.text;
-      this._callSubscriber(this.state);
-    } else if (active.type === "areaMessage") {
-      this._state.sendMessage = active.add;
-      this._callSubscriber(this.state);
-    }
+  dispatch(action, text) {
+    this._state.profilePage = profileReducer(this._state.profilePage , action);
+    this._state.dialogPage = dialogReducer(this._state.dialogPage, action);
+    this._callSubscriber(this._state);
   },
 };
 
-export const addPostCreator = () => ({ type: "addPost" });
-export const onChangeAreaCreator = (text) => ({ type: "areaPost", text: text });
-export const addMessageCreator = (add) => ({
-  type: "addMessage",
-  sendMessage: add,
-});
-export const areaMessageCreator = (add) => ({
-  type: "areaMessage",
-  sendMessage: add,
-});
+
+
 
 window.state = store._state;
 export default store;
