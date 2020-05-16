@@ -1,5 +1,5 @@
 import React from "react";
-import store from "./Components/Redux/State";
+import store from "./Components/Redux/Store";
 import * as serviceWorker from "./serviceWorker";
 import ReactDOM from "react-dom";
 import "./index.css";

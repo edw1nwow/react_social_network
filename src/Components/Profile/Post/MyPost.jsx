@@ -12,7 +12,7 @@ const MyPost = (props) => {
     let text = add.current.value;
     props.store.dispatch(onChangeAreaCreator(text));
   };
-  let posts = props.store._state.profilePage.messageData.map((p) => (
+  let posts = props.store.getState().profilePage.messageData.map((p) => (
       <Post message={p.message} countLike={p.countLike} />
     ));
   return (

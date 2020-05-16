@@ -1,5 +1,5 @@
-import profileReducer from "../Redux/Profile-reducer";
-import dialogReducer from "../Redux/Dialog-reducer";
+import profileReducer from "./Profile-reducer";
+import dialogReducer from "./Dialog-reducer";
 
 let store = {
   _state: {
