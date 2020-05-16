@@ -1,7 +1,18 @@
 const addPost = 'addPost'
 const areaPost = 'areaPost'
 
-const profileReducer = (state, action) => {
+let initialState = {
+  messageData: [
+    { id: 1, message: "hello, Bro!", countLike: 0 },
+    { id: 2, message: "How are y ?", countLike: 23 },
+    { id: 3, message: "hello, Bro!", countLike: 3 },
+    { id: 4, message: "hello, Bro!", countLike: 43 },
+    { id: 5, message: "hello, Br!", countLike: 42 },
+  ],
+  NewPostText: "Social network",
+}
+
+const profileReducer = (state = initialState, action) => {
   switch(action.type) {
       case addPost:
         let newPost = {

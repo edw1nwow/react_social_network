@@ -1,5 +1,5 @@
 import React from "react";
-import MyPost from "././Post/MyPost";
+import MyPostsContainer from "././Post/MyPostsContainer";
 import s from "./Profile.module.css";
 import ProfileInfo from "./Profileinfo/ProfileInfo";
 
@@ -13,7 +13,7 @@ function Profile(props) {
         />
       </div>
       <ProfileInfo />
-      <MyPost store={props.store} />
+      <MyPostsContainer store={props.store} />
     </div>
   );
 }

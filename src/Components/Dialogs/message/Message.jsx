@@ -6,8 +6,8 @@ const Letter = (props) => {
 };
 
 const Message = (props) => {
-  let m = props.store
-    .getState().dialogPage
+
+  let m = props.dialogPage
     .letterData.map((m) => <Letter message={m.message} />);
 
   return <div className={s.s}>{m}</div>;
