@@ -1,12 +1,9 @@
 import React from "react";
 import Post from "./Post";
-import { addPostCreator, onChangeAreaCreator } from "../../Redux/State";
+import { addPostCreator, onChangeAreaCreator } from "../../Redux/Profile-reducer";
 
 const MyPost = (props) => {
   let add = React.createRef();
-
-  debugger;
-
   let addPost = () => {
     props.store.dispatch(addPostCreator());
   };
@@ -15,21 +12,16 @@ const MyPost = (props) => {
     let text = add.current.value;
     props.store.dispatch(onChangeAreaCreator(text));
   };
-
-  let posts = props.store
-    .getState()
-    .messageData.map((p) => (
+  let posts = props.store._state.profilePage.messageData.map((p) => (
       <Post message={p.message} countLike={p.countLike} />
     ));
-
-  console.log();
   return (
     <div className='New-post'>
       <h3>New post</h3>
       <div>
         <textarea
           ref={add}
-          value={props.store.getState().NewPostText}
+          value={props.store.getState().profilePage.NewPostText}
           onChange={onChangeArea}
         />
       </div>

@@ -2,7 +2,7 @@ import React from "react";
 import s from "./Dialogs.module.css";
 import { NavLink } from "react-router-dom";
 import Message from "./message/Message";
-import { areaMessageCreator, addMessageCreator } from "../Redux/State";
+import { areaMessageCreator, addMessageCreator } from "../Redux/Dialog-reducer";
 
 const User = (props) => {
   let path = "/Dialogs/" + props.id;
@@ -15,13 +15,12 @@ const User = (props) => {
 
 const Dialogs = (props) => {
   let user = props.store
-    .getState()
+    .getState().dialogPage
     .usersData.map((u) => <User name={u.name} id={u.id} />);
 
   let sendMessage = React.createRef();
 
   let send = () => {
-    debugger;
     let add = sendMessage.current.value;
     props.store.dispatch(addMessageCreator(add));
   };
@@ -41,7 +40,7 @@ const Dialogs = (props) => {
         <textarea
           ref={sendMessage}
           onChange={insertMessage}
-          value={props.store.getState().sendMessage}
+          value={props.store.getState().dialogPage.sendMessage}
         />
         <button onClick={send}>send message</button>
       </div>
