@@ -18,7 +18,6 @@ const User = (props) => {
 
 
 const Dialogs = (props) => {
- 
   let user = props.dialogPage.usersData.map((u) => <User name={u.name} id={u.id} />);
 
   let sendMessage = React.createRef();
