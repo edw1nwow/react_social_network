@@ -6,7 +6,7 @@ const Letter = (props) => {
 };
 
 const Message = (props) => {
-
+debugger
   let m = props.dialogPage
     .letterData.map((m) => <Letter message={m.message} />);
 

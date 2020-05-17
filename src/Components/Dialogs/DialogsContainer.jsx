@@ -1,27 +1,24 @@
-import React from "react";
 import { areaMessageCreator, addMessageCreator } from "../Redux/Dialog-reducer";
-import Dialogs from './Dialogs';
+import Dialogs from "./Dialogs";
+import { connect } from "react-redux";
 
 
-
-
-
-const DialogsContainer = (props) => {
-
-  let dialogPage = props.store.getState().dialogPage
-  
-
-  let send = (add) => {
-    props.store.dispatch(addMessageCreator(add));
+let mapStateToProps = (state) => {
+  return {
+    dialogPage: state.dialogPage,
   };
-
-  let insertMessage = (add) => {
-
-    props.store.dispatch(areaMessageCreator(add));
-  };
-
-  return (
-  <Dialogs send={send} dialogPage={dialogPage} insertMessage={insertMessage} />
-  );
 };
+let mapDispatchToProps = (dispatch) => {
+  return {
+    send: (add) => {
+      dispatch(addMessageCreator(add));
+    },
+    insertMessage: (add) => {
+      dispatch(areaMessageCreator(add));
+    },
+  };
+};
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+
 export default DialogsContainer;
