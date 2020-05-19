@@ -8,6 +8,7 @@ import { Route, BrowserRouter } from "react-router-dom";
 import Music from "./Components/Music/Music";
 import News from "./Components/News/News";
 import Settings from "./Components/Settings/Settings";
+import UsersPageContainer from "./Components/Users/UsersPageContainer"
 
 const App = (props) => {
   
@@ -20,6 +21,10 @@ const App = (props) => {
           <Route
             path='/(Profile| |)/'
             render={() => <Profile store={props.store} />}
+          />
+          <Route
+            path='/Users'
+            render={() => <UsersPageContainer store={props.store} />}
           />
           <Route
             path='/Dialogs'
