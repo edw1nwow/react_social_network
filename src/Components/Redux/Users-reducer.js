@@ -3,14 +3,14 @@ const UnFollow = 'Unfollow'
 const SET_USERS = 'SET_USERS'
 
 let initialState = {
-  
-  usersData: [
-     { id: 1, Followed: true , Name: "Stas", Status:'hello, im here', location:{Country: 'Ukraine', City: 'kiev' }},
-    { id: 2, Followed: true , Name: "Anatoliy", Status:'hello, im here', location:{Country: 'Ukraine', City: 'kiev' }},
-     { id: 3, Followed: false , Name: "Lera",Status:'hello, im here', location:{Country: 'Ukraine', City: 'kiev' }},
-     { id: 4, Followed: true , Name: "Alex", Status:'hello, im here', location:{Country: 'Ukraine', City: 'kiev' }},
-    { id: 5, Followed: false , Name: "Gena", Status:'hello, im here', location:{Country: 'Ukraine', City: 'kiev' }},
-   ],
+  usersData:[]
+  // usersData: [
+  //    { id: 1, Followed: true , Name: "Stas", Status:'hello, im here', location:{Country: 'Ukraine', City: 'kiev' }},
+  //   { id: 2, Followed: true , Name: "Anatoliy", Status:'hello, im here', location:{Country: 'Ukraine', City: 'kiev' }},
+  //    { id: 3, Followed: false , Name: "Lera",Status:'hello, im here', location:{Country: 'Ukraine', City: 'kiev' }},
+  //    { id: 4, Followed: true , Name: "Alex", Status:'hello, im here', location:{Country: 'Ukraine', City: 'kiev' }},
+  //   { id: 5, Followed: false , Name: "Gena", Status:'hello, im here', location:{Country: 'Ukraine', City: 'kiev' }},
+  //  ],
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -28,6 +28,7 @@ const usersReducer = (state = initialState, action) => {
       };
       
       case UnFollow:
+        
         return{
         ...state, 
         usersData: state.usersData.map( u =>{
@@ -38,10 +39,8 @@ const usersReducer = (state = initialState, action) => {
        })
     };
       case SET_USERS:
-        {
-          return{
-            ...state, 
-            usersData: [...state.usersData, ...action.usersData]
+        {debugger;
+          return{ ...state, usersData: [...state.usersData, ...action.usersData]
           }
         } 
       default:
