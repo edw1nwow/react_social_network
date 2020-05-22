@@ -1,30 +1,32 @@
 import React from 'react';
 import s from './Users.module.css'
-
+import * as axios from 'axios';
+import userPhoto from "../../assets/img/user.png"
 
 
 const UsersPage = (props) => {
-    debugger;
 
-  
-// props.Users([
-//     { id: 1, Followed: true , Name: "Stas", Status:'hello, im here', location:{Country: 'Ukraine', City: 'kiev' }},
-//     { id: 2, Followed: true , Name: "Lera", Status:'hello, im here', location:{Country: 'Ukraine', City: 'kiev' }},
-//     { id: 3, Followed: false , Name: "Sergio",Status:'hello, im here', location:{Country: 'Ukraine', City: 'kiev' }},
-//     { id: 4, Followed: true , Name: "Alex", Status:'hello, im here', location:{Country: 'Ukraine', City: 'kiev' }},
-//     { id: 5, Followed: false , Name: "Gena", Status:'hello, im here', location:{Country: 'Ukraine', City: 'kiev' }},
-// ]
-// )
+ let getUsers = () => {
+        if (props.Users.length === 0){
+          axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            props.setUsers(response.data.items)
+          }) 
+      }
+    }
+
+
 return(
    
     
     <div>
+        <button onClick={getUsers}>Get users </button>
 { 
+
         props.Users.map(u =>
         
         <div className={s.label} key={u.id}>
             <div className={s.avaFollow}>
-                <img src="https://www.apicius.es/wp-content/uploads/2012/07/IMG-20120714-009211.jpg"
+                <img src={u.photos.small != null ? u.photos.small : userPhoto }
                 alt="" className={s.avatar}/>
                 <div>{u.Followed 
                 ? <button onClick={() => { props.unFollow(u.id)}}>Unfollow</button> 
@@ -34,12 +36,12 @@ return(
             </div>
             <div className={s.card}>   
                 <div className={s.cardName}>
-                    <h4>{u.Name}</h4>
-                    <p>{u.Status}</p>   
+                    <h4>{u.name}</h4>
+                    <p>{u.status}</p>   
                 </div>
                 <div className={s.cardLocation}>
-                    <div> <span>{u.location.Country}</span></div>
-                    <div> <span>{u.location.City}</span></div>
+                    <div> <span>u.location.Country</span></div>
+                    <div> <span>u.location.City</span></div>
                 </div>
             </div>
         </div>
@@ -50,7 +52,7 @@ return(
     </div>
 
     )
-
-} 
+                }
+ 
 
 export default UsersPage
