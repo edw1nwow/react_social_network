@@ -1,4 +1,4 @@
-import UsersPage from './UsersPage'
+import UsersPage from './UsersPageC'
 import { connect } from 'react-redux'
 import {FollowAC, unFollowAC, setUsersAC  } from '../Redux/Users-reducer'
 
